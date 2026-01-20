@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DSA Tracker - Master Data Structures & Algorithms</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0f0f1a;
+      color: #e0e0ff;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Header / Navbar */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(15, 15, 35, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(100, 100, 255, 0.15);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    nav {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #7b5eff, #00ddeb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links a {
+      color: #ccd6ff;
+      text-decoration: none;
+      margin-left: 2.5rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #7b5eff;
+    }
+
+    .auth-buttons button {
+      padding: 0.6rem 1.5rem;
+      margin-left: 1rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .login-btn {
+      background: transparent;
+      border: 1px solid #7b5eff;
+      color: #7b5eff;
+    }
+
+    .signup-btn {
+      background: linear-gradient(90deg, #7b5eff, #5a4aff);
+      color: white;
+    }
+
+    .login-btn:hover {
+      background: rgba(123, 94, 255, 0.1);
+    }
+
+    .signup-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(123, 94, 255, 0.35);
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(123,94,255,0.12) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 4.2rem;
+      margin-bottom: 1.2rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #a78bfa, #7b5eff, #00ddeb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      font-size: 1.35rem;
+      color: #b0b0ff;
+      margin-bottom: 2.5rem;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .primary-btn, .secondary-btn {
+      padding: 1rem 2.4rem;
+      font-size: 1.15rem;
+      font-weight: 600;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .primary-btn {
+      background: linear-gradient(90deg, #7b5eff, #5a4aff);
+      color: white;
+      box-shadow: 0 10px 30px rgba(123, 94, 255, 0.4);
+    }
+
+    .secondary-btn {
+      background: transparent;
+      border: 2px solid #7b5eff;
+      color: #7b5eff;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 40px rgba(123, 94, 255, 0.5);
+    }
+
+    .secondary-btn:hover {
+      background: rgba(123, 94, 255, 0.1);
+    }
+
+    /* Stats Section */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      margin-top: 5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 3.2rem;
+      font-weight: 800;
+      color: #7b5eff;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: #a0a0cc;
+      font-size: 1.1rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 3.2rem; }
+      .hero p { font-size: 1.15rem; }
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; } /* You can add hamburger menu later */
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">DSA<span style="color:#00ddeb">Tracker</span></div>
+      
+      <div class="nav-links">
+        <a href="login.html">Problems</a>
+        <a href="login.html">Roadmap</a>
+        <a href="login.html">My Progress</a>
+        <a href="login.html">Leaderboard</a>
+      </div>
+
+      <div class="auth-buttons">
+        <button onclick="document.location='login.html'" class="secondary-btn">Login</button>
+        <button onclick="document.location='signup.html'"class="primary-btn">Get Started</button>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Master Data Structures & Algorithms</h1>
+      <p>Track your progress, solve curated problems, follow structured roadmaps and compete with others to become a better problem solver.</p>
+      
+      <div class="nav-links">
+        <a href="login.html" class="primary-btn">Start Solving Now →</a>
+        <a href="login.html" class="secondary-btn">View Roadmaps</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat-item">
+          <div class="stat-number">1200+</div>
+          <div class="stat-label">Problems</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">15</div>
+          <div class="stat-label">Roadmaps</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">87k+</div>
+          <div class="stat-label">Active Users</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA Tracker-Signup Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            /* DSA-related background: Abstract Data Nodes/Code */
+            background: linear-gradient(rgba(10, 10, 25, 0.85), rgba(10, 10, 25, 0.85)), 
+                        url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #64ffda; /* Teal accent common in dev themes */
+            margin-bottom: 30px;
+            font-family: 'Fira Code', monospace;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            text-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
+        }
+
+        /* Form Container with Glassmorphism */
+        form {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 500px;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group > label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        /* Required Asterisk */
+        .required-label::after {
+            content: " *";
+            color: #e74c3c;
+        }
+
+        /* Inputs Styling */
+        input:not([type="checkbox"]):not([type="radio"]), 
+        select, 
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #0a192f;
+            box-shadow: 0 0 0 3px rgba(10, 25, 47, 0.1);
+        }
+
+        /* DSA Plan Section */
+        .subscription-group {
+            background: #f0f4f8;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 5px solid #64ffda;
+        }
+
+        legend {
+            font-weight: 700;
+            color: #0a192f;
+            margin-bottom: 10px;
+        }
+
+        .option-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            background: #0a192f;
+            color: #64ffda;
+            border: 1px solid #64ffda;
+            padding: 14px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: 'Fira Code', monospace;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background: #64ffda;
+            color: #0a192f;
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.4);
+        }
+
+        @media (max-width: 480px) {
+            form { padding: 25px 20px; }
+        }
+        .error-msg {
+    display: none;
+    color: #e74c3c;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    font-weight: 500;
+  }
+
+  /* Password mismatch logic */
+  #confirm_password:invalid:not(:placeholder-shown) + .error-msg {
+    display: block;
+  }
+
+  #confirm_password:invalid:not(:placeholder-shown) {
+    border-color: #e74c3c;
+  }
+   .center-wrapper {
+    text-align: center;           /* Centers inline or inline-block elements */
+    padding: 100px 20px;
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+    color: #080d23;
+  }
+
+  button {
+    display: inline-block;        /* Important! */
+    padding: 0.9rem 2.5rem;
+    background: #7b5eff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+    </style>
+</head>
+<body>
+
+    <h1>&lt;DSA_Signup /&gt;</h1>
+
+    <form action="#">
+        <div class="form-group">
+            <label for="name" class="required-label">Full Name</label>
+            <input id="name" type="text" placeholder="e.g. Alan Turing" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email" class="required-label">Email</label>
+            <input id="email" type="email" placeholder="git-push@example.com" required>
+        </div>
+        <div class="form-group">
+            <label for="password" class="required-label">Create password</label>
+            <input id="password"  minlength="8" type="password" placeholder="atleast 8 character" required oninput="confirm_password.pattern = this.value">
+        </div>
+         <div class="form-group">
+            <label for="password" class="required-label">Confirm password</label>
+            <input id="confirm_password" type="confirm_password" placeholder="Re-enter password" required title="Passwords must match" >
+             <span class="error-msg">Passwords do not match!</span>
+        </div>
+        <div class="subscription-group">
+            <fieldset>
+                <legend>Select Your Path</legend>
+                <div class="option-group">
+                    <div class="option-item">
+                        <input id="arrays" type="radio" name="path" value="arrays" checked>
+                        <label for="arrays">Foundation</label>
+                    </div>
+                    <div class="option-item">
+                        <input id="graphs" type="radio" name="path" value="graphs">
+                        <label for="graphs">competitive programming</label>
+                    </div>
+                    <div class="option-item">
+                        <input id="dp" type="radio" name="path" value="dp">
+                        <label for="dp">job/internship ready</label>
+                    </div>
+                    <div class="option-item">
+                        <input id="dp" type="radio" name="path" value="dp">
+                        <label for="dp">other</label>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="form-group">
+            <label for="comments">Favorite Algorithm</label>
+            <textarea id="comments" placeholder="Why do you love QuickSort?"></textarea>
+        </div>        
+        <div class="form-group" style="display: flex; align-items: center; gap: 10px; margin-top: 15px;">
+    <input id="terms" type="checkbox" name="terms" required style="width: auto;">
+    <label for="terms" class="required-label">I agree to the Terms and Conditions</label>
+</div>
+ <div class="center-wrapper">
+        <p>Already have an account?</p>
+        <a href="login.html" class="login-btn">Login</a>
+          <button type="submit">Signup</button>
+           </div>    
+    </form>
+
+</body>
+</html>
